@@ -20,25 +20,30 @@ if (apriConto == "s") {
         Environment.Exit(0);
     }
 
-//
-repeat:
-    Console.WriteLine("Cosa vuoi fare ora? (versa/preleva/*)");
-    var azione = Console.ReadLine()?.ToLower();
-    if (azione == "versa") {
-        Console.WriteLine("Quanto vuoi versare?");
-        var versamento = int.Parse(Console.ReadLine()!);
-        nuovoConto.Versa(versamento);
-        Console.WriteLine($"Il tuo saldo ora ammonta a: {nuovoConto.SaldoConto}");
-        goto repeat;
-    } else if (azione == "preleva") {
-        Console.WriteLine("Quanto vuoi prelevare?");
-        var prelevamento = int.Parse(Console.ReadLine()!);
-        nuovoConto.Preleva(prelevamento);
-        Console.WriteLine($"Il tuo saldo ora ammonta a: {nuovoConto.SaldoConto}");
-        goto repeat;
-    } else {
-        Console.WriteLine("Arrivederci!");
-        return;
+    //
+
+    bool repeatActions = true;
+    //repeat:
+    while (repeatActions) {
+        Console.WriteLine("Cosa vuoi fare ora? (versa/preleva/*)");
+        var azione = Console.ReadLine()?.ToLower();
+        if (azione == "versa") {
+            Console.WriteLine("Quanto vuoi versare?");
+            var versamento = int.Parse(Console.ReadLine()!);
+            nuovoConto.Versa(versamento);
+            Console.WriteLine($"Il tuo saldo ora ammonta a: {nuovoConto.SaldoConto}");
+            //goto repeat;
+        } else if (azione == "preleva") {
+            Console.WriteLine("Quanto vuoi prelevare?");
+            var prelevamento = int.Parse(Console.ReadLine()!);
+            nuovoConto.Preleva(prelevamento);
+            Console.WriteLine($"Il tuo saldo ora ammonta a: {nuovoConto.SaldoConto}");
+            //goto repeat;
+        } else {
+            Console.WriteLine("Arrivederci!");
+            repeatActions = false;
+            //return;
+        }
     }
 } else {
     Console.WriteLine("Arrivederci!");
